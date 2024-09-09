@@ -3,6 +3,8 @@ import axios from "axios";
 import Nav from "../components/Navbar";
 import Footer from "../components/Footer";
 import DropdownButton from "../components/Dropdown";
+import markerIconPng from "leaflet/dist/images/marker-icon.png";
+import { Icon } from "leaflet";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -138,6 +140,13 @@ const Fields = () => {
                     aria-label={`Field ${field.name}, Value: ${parseFloat(
                       field.total_energy
                     )}`}
+                    icon={
+                      new Icon({
+                        iconUrl: markerIconPng,
+                        iconSize: [25, 41],
+                        iconAnchor: [12, 41],
+                      })
+                    }
                   >
                     <Popup>
                       {field.name}, Value: {parseFloat(field.total_energy)}
