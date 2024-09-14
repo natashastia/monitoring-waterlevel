@@ -119,7 +119,7 @@ const LatestData = () => {
   return (
     <div className="border-2 border-darkgray bg-white">
       <div className="flex justify-between bg-blue items-center">
-        <h1 className="p-1 mx-1 lg:text-xl text-white font-medium">
+        <h1 className="p-1 mx-1 lg:text-lg text-white font-medium">
           Latest Data
         </h1>
         <div className="relative inline-block text-left p-1 items-center">
@@ -147,13 +147,13 @@ const LatestData = () => {
           )}
         </div>
       </div>
-      <div className="bg-white table-container lg:h-[330px] md:h-[325px] h-[148px]">
+      <div className="bg-white table-container lg:h-[288px] md:h-[325px] h-[148px]">
         {loadingData ? (
-          <div className="flex items-center justify-center">
+          <div className="flex items-center text-xs justify-center">
             <p>Loading...</p>
           </div>
         ) : (
-          <table className="w-full table-auto text-sm">
+          <table className="w-full table-auto text-xs">
             <thead>
               <tr>
                 <th className="py-1 bg-lightblue">Date</th>

@@ -2,14 +2,12 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Nav from "../components/Navbar";
 import Footer from "../components/Footer";
-import DropdownButton from "../components/Dropdown";
 import Container from "../components/Container";
 
 const Devices = () => {
   const [deviceData, setDeviceData] = useState([]);
   const [error, setError] = useState(null);
   const [loadingData, setLoadingData] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("PSLH UGM");
 
   const options = ["PSLH UGM"];
   const baseUrl = import.meta.env.VITE_REACT_APP_API_URL;
@@ -59,17 +57,11 @@ const Devices = () => {
       >
         <div className="flex justify-between items-end pt-2 pb-1">
           <h1
-            className="font-bold text-xl md:text-2xl lg:text-3xl"
+            className="font-bold text-lg md:text-xl lg:text-2xl"
             id="devices-title"
           >
             Devices
           </h1>
-          <DropdownButton
-            options={options}
-            selectedOption={selectedOption}
-            onSelect={setSelectedOption}
-            aria-label="Select Organization"
-          />
         </div>
         <section
           className="flex-grow p-4 mb-10 bg-white"
@@ -105,8 +97,11 @@ const Devices = () => {
                           <li>Time zone: {device.timezone}</li>
                           <li>
                             Date created:{" "}
-                            {new Date(device.created_at).toLocaleDateString()}
+                            {new Date(device.created_at).toLocaleDateString(
+                              "en-GB"
+                            )}
                           </li>
+
                           <li>
                             Place of installation: {device.organization.name}
                           </li>

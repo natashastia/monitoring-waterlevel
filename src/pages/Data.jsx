@@ -109,7 +109,7 @@ const Data = () => {
         setInterval(btnInterval);
         setLoadingData(true);
       }}
-      className={`py-2 px-2 lg:w-36 mx-2 ${buttonClass(
+      className={`py-2 px-2 lg:w-32 mx-2 ${buttonClass(
         btnInterval
       )} btn-transition`}
       aria-label={`Show ${label}`}
@@ -141,9 +141,9 @@ const Data = () => {
         role="main"
       >
         <div className="hidden lg:block">
-          <div className="flex pt-2 items-end justify-between">
+          <div className="flex pt-4 items-end justify-between">
             <h1
-              className="font-bold text-xl md:text-2xl lg:text-3xl"
+              className="font-bold text-lg pb-1 md:text-xl lg:text-2xl"
               id="data-title"
             >
               Data
@@ -153,14 +153,6 @@ const Data = () => {
               <DataButton interval="hourly" label="Hourly Data" />
               <DataButton interval="daily" label="Daily Data" />
               <DataButton interval="monthly" label="Monthly Data" />
-            </div>
-            <div className="pt-0">
-              <DropdownButton
-                options={fields}
-                selectedOption={selectedFields}
-                onSelect={(fields) => setSelectedFields(fields)}
-                aria-label="Select Organization"
-              />
             </div>
           </div>
         </div>
@@ -207,7 +199,7 @@ const Data = () => {
           </div>
 
           <div
-            className="mx-4 table-container lg:h-[620px] h-[654px]"
+            className="mx-4 table-container lg:h-[550px] h-[654px]"
             role="region"
             aria-labelledby="tma-data-title"
           >

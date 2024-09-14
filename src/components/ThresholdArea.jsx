@@ -23,17 +23,17 @@ const ThresholdArea = ({
 }) => {
   return (
     <div className="bg-white pl-4 pr-4 pb-4 border-l-2 border-r-2 border-b-2 border-darkgray">
-      <div className="flex bg-lightblue border border-blue p-2 justify-between items-center">
+      <div className="flex bg-lightblue border border-blue px-2 py-1 justify-between items-center">
         <div className="flex items-center">
-          <h1 className="text-xl font-medium">Threshold Chart</h1>
+          <h1 className="text-lg font-medium">Threshold Chart</h1>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center text-sm">
           <span className="w-10 h-2 rounded-full bg-[#FFA500] mr-2"></span>
           <span>Alert</span>
           <span className="w-10 h-2 rounded-full bg-[#FF0000] mx-2"></span>
           <span>Critical</span>
           <button
-            className="bg-blue ml-3 py-1 px-2 rounded-full text-white hover:bg-white hover:text-black text-sm flex items-center"
+            className="bg-blue ml-3 py-1 px-2 rounded-full text-white hover:bg-white hover:text-black text-xs flex items-center"
             onClick={handleButtonClick}
           >
             <IoMdSettings className="mr-1" />
@@ -77,7 +77,7 @@ const ThresholdArea = ({
                     value: "Ground Surface",
                     position: "top",
                     offset: -24,
-                    fontSize: 12,
+                    fontSize: 10,
                   }}
                 />
                 <YAxis
@@ -86,7 +86,7 @@ const ThresholdArea = ({
                   tickFormatter={(tick) =>
                     tick === 0 ? "0" : `-${tick.toFixed(0)}`
                   }
-                  tick={{ fontSize: 12 }}
+                  tick={{ fontSize: 10 }}
                 />
 
                 <ReferenceLine

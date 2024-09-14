@@ -83,13 +83,13 @@ const LineChartComponent = ({
       className="h-full bg-white text-black p-4 border-l-2 border-r-2 border-darkgray"
       aria-labelledby="chart-heading"
     >
-      <div className="flex bg-lightblue border border-blue p-2 justify-between items-center">
+      <div className="flex bg-lightblue border border-blue px-2 py-1 justify-between items-center">
         <div className="flex">
-          <h className="text-xl font-medium">Data Chart</h>
+          <h className="text-lg font-medium">Data Chart</h>
         </div>
         <div className="flex items-center">
           <div className="flex gap-2 mr-2">
-            <div className="flex gap-2">
+            <div className="flex gap-2 text-sm">
               <img src={LegendValue} />
               <span>Value</span>
             </div>
@@ -103,7 +103,7 @@ const LineChartComponent = ({
           {interval !== "monthly" && (
             <button
               onClick={handleTogglePreviousData}
-              className="bg-blue p-1 px-3 rounded-full text-white hover:bg-white hover:text-black text-sm"
+              className="bg-blue p-1 px-3 rounded-full text-white hover:bg-white hover:text-black text-xs"
             >
               {showPrevious
                 ? interval === "daily"
@@ -116,7 +116,7 @@ const LineChartComponent = ({
           )}
         </div>
       </div>
-      <div className="h-[280px] border-l border-r border-blue">
+      <div className="h-[240px] border-l border-r border-blue">
         {isLoading ? (
           <div
             className="h-full text-center items-center p-4"
@@ -135,7 +135,7 @@ const LineChartComponent = ({
             <LineChart
               data={data}
               syncId="mainChart"
-              margin={{ top: 50, right: 20, left: 20, bottom: 0 }}
+              margin={{ top: 40, right: 20, left: 20, bottom: 1 }}
             >
               <CartesianGrid strokeDasharray="none" vertical={false} />
               <XAxis
@@ -155,11 +155,11 @@ const LineChartComponent = ({
                       ? "Date"
                       : "Month",
                   position: "top",
-                  offset: 0,
-                  fontSize: 12,
+                  offset: -5,
+                  fontSize: 10,
                   role: "presentation",
                 }}
-                tick={{ fontSize: 12 }}
+                tick={{ fontSize: 10 }}
                 mirror={true}
               />
               <YAxis
@@ -174,10 +174,10 @@ const LineChartComponent = ({
                   angle: -90,
                   position: "left",
                   offset: -5,
-                  fontSize: 12,
+                  fontSize: 10,
                   role: "presentation",
                 }}
-                tick={{ fontSize: 12 }}
+                tick={{ fontSize: 10 }}
               />
               <Tooltip content={<CustomTooltip interval={interval} />} />
               <Line
@@ -208,7 +208,7 @@ const LineChartComponent = ({
         {isLoading ? (
           <div>Calculating trend...</div>
         ) : (
-          <div className="flex text-sm lg:text-base items-center">
+          <div className="flex text-sm lg:text-sm items-center">
             {trend}
             <IoIosInformationCircle
               className="ml-2 info-icon"

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Nav from "../components/Navbar";
 import Footer from "../components/Footer";
-import DropdownButton from "../components/Dropdown";
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import { Icon } from "leaflet";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
@@ -12,11 +11,9 @@ const defaultCenter = [-7.775616, 110.3792201];
 
 const Fields = () => {
   const [deviceData, setDeviceData] = useState([]);
-  const [filteredData, setFilteredData] = useState([]);
   const [error, setError] = useState(null);
   const [loadingData, setLoadingData] = useState(false);
   const [loadingMap, setLoadingMap] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("All Fields");
 
   const baseUrl = import.meta.env.VITE_REACT_APP_API_URL;
   const token = import.meta.env.VITE_REACT_APP_API_TOKEN;
@@ -33,7 +30,6 @@ const Fields = () => {
           },
         });
         setDeviceData(response.data.data);
-        setFilteredData(response.data.data);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -44,31 +40,15 @@ const Fields = () => {
     fetchData();
   }, [baseUrl, token]);
 
-  useEffect(() => {
-    setLoadingMap(true);
-    const timer = setTimeout(() => {
-      if (selectedOption === "PSLH UGM") {
-        setFilteredData(deviceData.filter((item) => item.id === 5));
-      } else {
-        setFilteredData(deviceData);
-      }
-      setLoadingMap(false);
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, [selectedOption, deviceData]);
-
-  if (error) return <p>Error: {error}</p>;
-
-  const options = ["All Fields", "PSLH UGM"];
-
   const mapCenter =
-    filteredData.length > 0
+    deviceData.length > 0
       ? [
-          filteredData[0].latitude ?? defaultCenter[0],
-          filteredData[0].longitude ?? defaultCenter[1],
+          deviceData[0].latitude ?? defaultCenter[0],
+          deviceData[0].longitude ?? defaultCenter[1],
         ]
       : defaultCenter;
+
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div className="flex flex-col h-screen w-full bg-gray relative">
@@ -79,19 +59,11 @@ const Fields = () => {
       <main className="flex-grow px-4 md:px-20 relative flex flex-col lg:pt-12 mt-2 pt-16">
         <div className="flex justify-between items-end pt-2 pb-1">
           <h1
-            className="font-bold text-xl md:text-2xl lg:text-3xl"
+            className="font-bold text-lg md:text-xl lg:text-2xl"
             id="fields-heading"
           >
             Fields
           </h1>
-          <div>
-            <DropdownButton
-              options={options}
-              selectedOption={selectedOption}
-              onSelect={(option) => setSelectedOption(option)}
-              aria-label="Select field option"
-            />
-          </div>
         </div>
         {loadingData ? (
           <div
@@ -130,7 +102,7 @@ const Fields = () => {
                 </div>
               )}
               {!loadingMap &&
-                filteredData.map((field) => (
+                deviceData.map((field) => (
                   <Marker
                     key={field.id}
                     position={[
@@ -143,8 +115,9 @@ const Fields = () => {
                     icon={
                       new Icon({
                         iconUrl: markerIconPng,
-                        iconSize: [25, 41],
-                        iconAnchor: [12, 41],
+                        iconSize: [25, 41], // Ukuran ikon
+                        iconAnchor: [12, 41], // Posisi ujung bawah marker
+                        popupAnchor: [0, -41], // Menyesuaikan agar popup berada di atas marker
                       })
                     }
                   >

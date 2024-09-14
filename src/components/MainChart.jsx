@@ -147,7 +147,7 @@ const MainChart = () => {
   return (
     <div className="h-grow">
       <div className="lg:flex md:flex justify-between">
-        <h1 className="lg:text-xl text-center text-sm font-bold mt-1 lg:pr-0">
+        <h1 className="lg:text-lg text-center text-sm font-bold mt-1 lg:pr-0">
           TMA Data
         </h1>
         <div className="text-center items-center">

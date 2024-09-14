@@ -62,7 +62,7 @@ const CurrentTma = ({ selectedOption }) => {
 
   return (
     <article className="border-2 border-darkgray h-full bg-white">
-      <header className="py-1 bg-blue lg:text-xl font-medium text-white text-center">
+      <header className="py-1 bg-blue lg:text-lg font-medium text-white text-center">
         Current TMA
       </header>
       <div>
@@ -76,7 +76,7 @@ const CurrentTma = ({ selectedOption }) => {
                 <h1 className="font-medium text-5xl" aria-live="polite">
                   {tmaValue.toFixed(3)}
                 </h1>
-                <figcaption className="text-center text-sm">
+                <figcaption className="text-center text-xs">
                   Meters below the ground surface
                 </figcaption>
               </>

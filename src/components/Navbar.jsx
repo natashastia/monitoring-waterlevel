@@ -25,25 +25,21 @@ const Nav = () => {
   const handleClick = () => setClick(!click);
   return (
     <nav>
-      <div className="h-5vh flex justify-between fixed top-0 left-0 w-full z-50 text-black border-b-2 border-darkgray lg:py-3 lg:px-20 px-4 py-3 flex-1 bg-white">
+      <div className="flex justify-between fixed top-0 left-0 w-full z-50 text-black border-b-2 border-darkgray lg:py-2 lg:px-20 px-4 py-1 flex-1 bg-white">
         {/* Logo Section */}
         <div>
           <Link to="/" className="flex items-center gap-2">
             <FaWater size={38} color="#4880FF" />
             <div className="flex flex-col">
-              <span className="lg:text-[16px] font-bold">
-                Ground Water Level
-              </span>
-              <span className="lg:text-[14px] font-medium">
-                Monitoring System
-              </span>
+              <span className="lg:text-md font-bold">Ground Water Level</span>
+              <span className="lg:text-sm font-medium">Monitoring System</span>
             </div>
           </Link>
         </div>
 
         {/* Desktop Menu */}
         <div className="lg:flex items-center justify-center hidden">
-          <ul className="flex gap-8 text-[17px]">
+          <ul className="flex gap-8 text-md">
             <NavItem to="/dashboard" label="Dashboard" />
             <NavItem to="/fields" label="Fields" />
             <NavItem to="/devices" label="Devices" />
@@ -53,7 +49,7 @@ const Nav = () => {
 
         {/* Home Icon Link */}
         <div className="lg:flex items-center hidden">
-          <ul className="flex text-[17px]">
+          <ul className="flex text-md">
             <NavItem to="/" label="Home" icon={<FaHome />} />
           </ul>
         </div>

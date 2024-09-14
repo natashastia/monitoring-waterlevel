@@ -21,24 +21,31 @@ const ThresholdPopup = ({
 
         <div className="mb-4">
           <h3 className="text-sm font-semibold mb-2">Alert</h3>
-          <input
-            type="number"
-            value={thresholds.alert}
-            onChange={(e) => handleInputChange(e, "alert")}
-            placeholder="Threshold"
-            className="p-2 w-full border rounded"
-          />
+          <div className="flex items-center gap-2">
+            <span>-</span>
+            <input
+              type="number"
+              value={thresholds.alert}
+              onChange={(e) => handleInputChange(e, "alert")}
+              placeholder="Threshold"
+              className="p-2 w-full border rounded"
+            />
+          </div>
         </div>
 
         <div className="mb-4">
           <h3 className="text-sm font-semibold mb-2">Critical</h3>
-          <input
-            type="number"
-            value={thresholds.critical}
-            onChange={(e) => handleInputChange(e, "critical")}
-            placeholder="Threshold"
-            className="p-2 w-full border rounded"
-          />
+          <div className="flex items-center gap-2">
+            <span>-</span>
+
+            <input
+              type="number"
+              value={thresholds.critical}
+              onChange={(e) => handleInputChange(e, "critical")}
+              placeholder="Threshold"
+              className="p-2 w-full border rounded"
+            />
+          </div>
         </div>
 
         {thresholdError && (

@@ -20,19 +20,11 @@ const Dashboard = () => {
       <main className="flex-grow px-4 md:px-20 relative flex flex-col lg:pt-12 mt-2 pt-16">
         <div className="flex justify-between items-end lg:pt-2 pt-0">
           <h1
-            className="font-bold text-xl md:text-2xl lg:text-3xl"
+            className="font-bold text-lg md:text-xl lg:text-2xl"
             id="dashboard-heading"
           >
             Dashboard
           </h1>
-          <div className="pt-0">
-            <DropdownButton
-              options={options}
-              selectedOption={selectedOption}
-              onSelect={(option) => setSelectedOption(option)}
-              aria-label="Select option for dashboard"
-            />
-          </div>
         </div>
 
         <section
