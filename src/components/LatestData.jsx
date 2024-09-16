@@ -127,18 +127,28 @@ const LatestData = () => {
             onClick={handleToggle}
             aria-expanded={isOpen}
             aria-haspopup="true"
-            className="flex items-center bg-white px-2 mx-1 text-sm rounded-full focus:outline-none"
+            className="flex items-center bg-white px-2 mx-1 text-sm rounded-full focus:outline-none
+             hover:bg-lightblue hover:text-black transition-colors duration-300 ease-in-out"
           >
             {selectedOption}
-            <IoIosArrowDropdownCircle className="dropdown-icon" />
+            <IoIosArrowDropdownCircle
+              className={`dropdown-icon transition-transform duration-300 ease-in-out 
+                ${isOpen ? "rotate-180" : "rotate-0"}`}
+            />
           </button>
           {isOpen && (
-            <div className="absolute z-50 right-0 mt-2 w-32 bg-white border border-gray rounded-md shadow-lg">
+            <div
+              className={`absolute z-50 right-0 mt-2 w-32 bg-white border border-gray rounded-md shadow-lg 
+                transition-all duration-300 transform origin-top-right
+                ${isOpen ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
+            >
               {options.map((option, index) => (
                 <button
                   key={index}
                   onClick={() => handleSelect(option)}
-                  className="block px-2 py-1 w-32 text-black hover:bg-gray text-center"
+                  className="block px-2 py-1 w-32 text-black text-center 
+                   hover:bg-lightblue hover:text-black 
+                   transition-colors duration-200 ease-in-out"
                 >
                   {option}
                 </button>
@@ -147,7 +157,7 @@ const LatestData = () => {
           )}
         </div>
       </div>
-      <div className="bg-white table-container lg:h-[288px] md:h-[325px] h-[148px]">
+      <div className="bg-white table-container lg:h-[288px] md:h-[325px] h-[300px]">
         {loadingData ? (
           <div className="flex items-center text-xs justify-center">
             <p>Loading...</p>

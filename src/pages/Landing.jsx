@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaChevronDown, FaArrowRight } from "react-icons/fa"; // Importing icons from react-icons
-import Nav from "../components/Navbar";
+import Nav from "../components/NavbarLanding";
 import Footer from "../components/Footer";
 import Wave from "../assets/Wave.png";
 

@@ -109,8 +109,10 @@ const MainChart = () => {
 
   const handleClosePopup = () => {
     if (
-      thresholdError === "The critical value must be greater ⚠️" ||
-      thresholdError === "The critical value is too large ⚠️"
+      thresholdError === "The critical value must be greater than alert ⚠️" ||
+      thresholdError === "The critical value is too large ⚠️" ||
+      thresholdError === "Both alert and critical values are required ⚠️" ||
+      thresholdError === "Both alert and critical values must be numbers ⚠️"
     ) {
       return;
     }
@@ -150,7 +152,7 @@ const MainChart = () => {
         <h1 className="lg:text-lg text-center text-sm font-bold mt-1 lg:pr-0">
           TMA Data
         </h1>
-        <div className="text-center items-center">
+        <div className="flex justify-between text-center  items-center">
           {intervals.map(({ interval, label }) => (
             <IntervalButton
               key={interval}

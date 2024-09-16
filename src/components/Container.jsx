@@ -39,7 +39,10 @@ const Container = ({ title, children, latestDatetime }) => {
             className={`w-2 h-2 mx-2 rounded-full ${getStatusColor()}`}
             aria-label="Status indicator"
           ></span>
-          <time dateTime={latestDatetime} className="italic">
+          <time
+            dateTime={latestDatetime}
+            className="italic lg:text-base text-xs"
+          >
             {timeAgo}
           </time>
         </div>

@@ -31,7 +31,7 @@ const Dashboard = () => {
           aria-labelledby="main-chart-heading"
           className="flex-grow flex flex-col md:flex-row mb-2"
         >
-          <div className="w-full md:w-3/4">
+          <div className="w-full md:w-3/4 mb-2 lg:mb-0">
             <h2 id="main-chart-heading" className="sr-only">
               Main Chart Section
             </h2>
@@ -41,7 +41,7 @@ const Dashboard = () => {
           </div>
 
           <aside
-            className="w-full md:w-1/4 md:pl-4"
+            className="w-full md:w-1/4 md:pl-4 lg:mb-0 mb-8"
             aria-labelledby="aside-heading"
           >
             <h2 id="aside-heading" className="sr-only">
@@ -55,11 +55,11 @@ const Dashboard = () => {
               <LatestData aria-label="Latest Data" />
             </div>
 
-            <div className="w-full border border-blue pb-2 bg-white text-center items-center">
+            <div className="w-full border border-blue lg:pb-2 flex flex-col justify-center bg-white text-center items-center">
               <img
                 src={Threshold}
                 alt="Threshold Water Level Indicator"
-                className="items-center"
+                className="mx-auto"
               />
               <a
                 href="https://jdih.jogjaprov.go.id/hukum/peraturan-daerah-daerah-istimewa-yogyakarta-nomor-5-tahun-2012-tentang-pengelolaan-air-tanah"

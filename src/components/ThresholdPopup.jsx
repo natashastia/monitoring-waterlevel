@@ -6,6 +6,14 @@ const ThresholdPopup = ({
   handleInputChange,
   handleClosePopup,
 }) => {
+  const handleNumberInputChange = (e, type) => {
+    const value = e.target.value;
+
+    if (/^\d*$/.test(value)) {
+      handleInputChange(e, type);
+    }
+  };
+
   return (
     <div
       className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-40"
@@ -24,9 +32,9 @@ const ThresholdPopup = ({
           <div className="flex items-center gap-2">
             <span>-</span>
             <input
-              type="number"
+              type="text"
               value={thresholds.alert}
-              onChange={(e) => handleInputChange(e, "alert")}
+              onChange={(e) => handleNumberInputChange(e, "alert")}
               placeholder="Threshold"
               className="p-2 w-full border rounded"
             />
@@ -39,9 +47,9 @@ const ThresholdPopup = ({
             <span>-</span>
 
             <input
-              type="number"
+              type="text"
               value={thresholds.critical}
-              onChange={(e) => handleInputChange(e, "critical")}
+              onChange={(e) => handleNumberInputChange(e, "critical")}
               placeholder="Threshold"
               className="p-2 w-full border rounded"
             />

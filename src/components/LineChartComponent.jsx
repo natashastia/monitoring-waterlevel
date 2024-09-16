@@ -85,25 +85,36 @@ const LineChartComponent = ({
     >
       <div className="flex bg-lightblue border border-blue px-2 py-1 justify-between items-center">
         <div className="flex">
-          <h className="text-lg font-medium">Data Chart</h>
+          <h className="lg:text-lg text-md font-medium">Data Chart</h>
         </div>
         <div className="flex items-center">
-          <div className="flex gap-2 mr-2">
+          <div className="flex lg:flex-row flex-col justify-center lg:gap-2 gap-0 mr-2">
             <div className="flex gap-2 text-sm">
-              <img src={LegendValue} />
-              <span>Value</span>
+              <img
+                src={LegendValue}
+                className="w-8 lg:w-10"
+                alt="Legend Value"
+              />
+              <span className="lg:text-base text-xs">Value</span>
             </div>
             {showPrevious && dataPrevious && dataPrevious.length > 0 && (
               <div className="flex gap-2">
-                <img src={LegendPreviousValue} />
-                <span>Previous Value</span>
+                <img
+                  src={LegendPreviousValue}
+                  className="w-8 lg:w-10"
+                  alt="Previous Value"
+                />
+                <span className="lg:text-base text-xs">Previous Value</span>
               </div>
             )}
           </div>
+
           {interval !== "monthly" && (
             <button
               onClick={handleTogglePreviousData}
-              className="bg-blue p-1 px-3 rounded-full text-white hover:bg-white hover:text-black text-xs"
+              className="bg-blue p-1 px-3 rounded-full text-white 
+                       hover:bg-white hover:text-black 
+                       transition-colors duration-300 ease-in-out text-xs"
             >
               {showPrevious
                 ? interval === "daily"
@@ -116,7 +127,7 @@ const LineChartComponent = ({
           )}
         </div>
       </div>
-      <div className="h-[240px] border-l border-r border-blue">
+      <div className="lg:h-[240px] h-[238px] border-l border-r border-blue">
         {isLoading ? (
           <div
             className="h-full text-center items-center p-4"

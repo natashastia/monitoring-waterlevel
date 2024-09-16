@@ -73,10 +73,13 @@ const CurrentTma = ({ selectedOption }) => {
           <div className="flex flex-col items-center justify-center w-full">
             {!error && !loadingData && (
               <>
-                <h1 className="font-medium text-5xl" aria-live="polite">
+                <h1
+                  className="font-medium lg:text-5xl md:text-3xl text-5xl"
+                  aria-live="polite"
+                >
                   {tmaValue.toFixed(3)}
                 </h1>
-                <figcaption className="text-center text-xs">
+                <figcaption className="text-center text-xs ">
                   Meters below the ground surface
                 </figcaption>
               </>

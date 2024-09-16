@@ -157,12 +157,12 @@ const Devices = () => {
                       ].map(({ label, status }) => (
                         <div
                           key={label}
-                          className="h-8 lg:w-48 max-w-56 bg-white border-2 border-blue flex gap-1 p-1 items-center"
+                          className="lg:h-8 h-12 text-xs lg:text-base lg:w-48 max-w-56 bg-white border-2 border-blue flex gap-1 p-1 items-center"
                           role="status"
                           aria-live="polite"
                         >
                           <span
-                            className={`w-2 h-2 mx-2 rounded-full ${getStatusColor(
+                            className={`w-2 h-2 rounded-full lg:ml-2 lg:mr-2 ml-1 mr-1 ${getStatusColor(
                               status
                             )}`}
                             aria-hidden="true"

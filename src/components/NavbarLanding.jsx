@@ -41,16 +41,6 @@ const Nav = () => {
           </Link>
         </div>
 
-        {/* Desktop Menu */}
-        <div className="lg:flex items-center justify-center hidden">
-          <ul className="flex gap-8 text-md">
-            <NavItem to="/dashboard" label="Dashboard" />
-            <NavItem to="/fields" label="Fields" />
-            <NavItem to="/devices" label="Devices" />
-            <NavItem to="/data" label="Data" />
-          </ul>
-        </div>
-
         {/* Home Icon Link */}
         <div className="lg:flex items-center hidden">
           <ul className="flex text-md">
@@ -85,10 +75,6 @@ const Nav = () => {
                  ease-in-out origin-top-right scale-100"
           >
             <ul className="text-center flex flex-col lg:text-xl p-4">
-              <NavItem to="/dashboard" label="Dashboard" />
-              <NavItem to="/fields" label="Fields" />
-              <NavItem to="/devices" label="Devices" />
-              <NavItem to="/data" label="Data" />
               <NavItem to="/" label="Home" />
             </ul>
           </div>

@@ -109,9 +109,7 @@ const Data = () => {
         setInterval(btnInterval);
         setLoadingData(true);
       }}
-      className={`py-2 px-2 lg:w-32 mx-2 ${buttonClass(
-        btnInterval
-      )} btn-transition`}
+      className={`py-2 px-2 lg:w-32 ${buttonClass(btnInterval)} btn-transition`}
       aria-label={`Show ${label}`}
       disabled={interval === btnInterval}
     >
@@ -148,7 +146,7 @@ const Data = () => {
             >
               Data
             </h1>
-            <div className="gap-2 text-center items-center">
+            <div className="space-x-4 text-center items-center">
               <DataButton interval="all" label="All Data" />
               <DataButton interval="hourly" label="Hourly Data" />
               <DataButton interval="daily" label="Daily Data" />
@@ -157,7 +155,7 @@ const Data = () => {
           </div>
         </div>
 
-        <div className="block lg:hidden pt-2 items-end justify-between">
+        <div className="block lg:hidden pt-2 justify-between">
           <div className="flex justify-between">
             <h1
               className="font-bold text-xl md:text-2xl lg:text-3xl"
@@ -165,16 +163,8 @@ const Data = () => {
             >
               Data
             </h1>
-            <div className="pt-0">
-              <DropdownButton
-                options={fields}
-                selectedOption={selectedFields}
-                onSelect={(fields) => setSelectedFields(fields)}
-                aria-label="Select Organization"
-              />
-            </div>
           </div>
-          <div className="gap-2 text-center pt-1 items-center">
+          <div className="flex flex-row text-center justify-between pt-1 items-center">
             <DataButton interval="all" label="All Data" />
             <DataButton interval="hourly" label="Hourly Data" />
             <DataButton interval="daily" label="Daily Data" />
@@ -199,7 +189,7 @@ const Data = () => {
           </div>
 
           <div
-            className="mx-4 table-container lg:h-[550px] h-[654px]"
+            className="mx-4 table-container lg:h-[550px] h-[510px]"
             role="region"
             aria-labelledby="tma-data-title"
           >

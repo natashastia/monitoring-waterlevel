@@ -25,24 +25,33 @@ const ThresholdArea = ({
     <div className="bg-white pl-4 pr-4 pb-4 border-l-2 border-r-2 border-b-2 border-darkgray">
       <div className="flex bg-lightblue border border-blue px-2 py-1 justify-between items-center">
         <div className="flex items-center">
-          <h1 className="text-lg font-medium">Threshold Chart</h1>
+          <h1 className="lg:text-lg text-md font-medium">Threshold Chart</h1>
         </div>
         <div className="flex items-center text-sm">
-          <span className="w-10 h-2 rounded-full bg-[#FFA500] mr-2"></span>
-          <span>Alert</span>
-          <span className="w-10 h-2 rounded-full bg-[#FF0000] mx-2"></span>
-          <span>Critical</span>
+          <div className="flex lg:flex-row flex-col">
+            <div className="flex">
+              <span className="lg:w-10 w-5 lg:h-2 h-1 my-2 rounded-full bg-[#FFA500] lg:mr-2"></span>
+              <span className="lg:text-base text-sm lg:ml-0 ml-2">Alert</span>
+            </div>
+            <div className="flex">
+              <span className="lg:w-10 w-5 lg:h-2 h-1 my-2 rounded-full bg-[#FF0000] lg:mx-2"></span>
+              <span className="lg:text-base text-sm lg:ml-0 ml-2">
+                Critical
+              </span>
+            </div>
+          </div>
           <button
-            className="bg-blue ml-3 py-1 px-2 rounded-full text-white hover:bg-white hover:text-black text-xs flex items-center"
+            className="bg-blue ml-3 py-1 px-2 rounded-full text-white hover:bg-white hover:text-black 
+             transition-colors duration-300 ease-in-out text-xs flex items-center"
             onClick={handleButtonClick}
           >
-            <IoMdSettings className="mr-1" />
+            <IoMdSettings className="mr-1 transition-transform duration-300" />
             <span>Settings</span>
           </button>
         </div>
       </div>
       <div className="text-black border-l border-b border-r border-blue">
-        <div className="py-2 px-3 h-[170px]">
+        <div className="py-2 px-3 lg:h-[172px] h-[166px]">
           {isLoading ? (
             <div className="h-full text-center items-center p-4">
               Loading...
