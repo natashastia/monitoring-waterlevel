@@ -85,7 +85,7 @@ const LineChartComponent = ({
     >
       <div className="flex bg-lightblue border border-blue px-2 py-1 justify-between items-center">
         <div className="flex">
-          <h className="lg:text-lg text-md font-medium">Data Chart</h>
+          <h1 className="lg:text-lg text-md font-medium">Data Chart</h1>
         </div>
         <div className="flex items-center">
           <div className="flex lg:flex-row flex-col justify-center lg:gap-2 gap-0 mr-2">
