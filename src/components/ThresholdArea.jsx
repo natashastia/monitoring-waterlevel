@@ -51,7 +51,7 @@ const ThresholdArea = ({
         </div>
       </div>
       <div className="text-black border-l border-b border-r border-blue">
-        <div className="py-2 px-3 lg:h-[172px] h-[166px]">
+        <div className="py-2 px-3 lg:h-[23vh] h-[20vh]">
           {isLoading ? (
             <div className="h-full text-center items-center p-4">
               Loading...

@@ -4,7 +4,7 @@ import { IoIosArrowDropdownCircle } from "react-icons/io";
 import { formatDate } from "../utils/formatDate";
 import { formatTime } from "../utils/formatTime";
 import { processedData } from "../utils/processedData";
-import { calculateAllPercentageChanges } from "../utils/calculatePercentage";
+import { calculatePercentageChanges } from "../utils/calculatePercentage";
 import { initializePusher, subscribeToChannel } from "../utils/pusherService";
 
 const LatestData = () => {
@@ -112,7 +112,7 @@ const LatestData = () => {
 
   const options = ["Hourly", "Daily", "Monthly"];
   const data = processedData(filteredData);
-  const percentageChanges = calculateAllPercentageChanges(filteredData);
+  const percentageChanges = calculatePercentageChanges(filteredData);
 
   if (error) return <p className="text-red-500">{error}</p>;
 
@@ -157,7 +157,7 @@ const LatestData = () => {
           )}
         </div>
       </div>
-      <div className="bg-white table-container lg:h-[288px] md:h-[325px] h-[300px]">
+      <div className="bg-white table-container lg:h-[39vh] md:h-[50vh] h-[60vh]">
         {loadingData ? (
           <div className="flex items-center text-xs justify-center">
             <p>Loading...</p>

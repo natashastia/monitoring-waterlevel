@@ -127,7 +127,7 @@ const LineChartComponent = ({
           )}
         </div>
       </div>
-      <div className="lg:h-[240px] h-[238px] border-l border-r border-blue">
+      <div className="lg:h-[33vh] h-[30vh] border-l border-r border-blue">
         {isLoading ? (
           <div
             className="h-full text-center items-center p-4"

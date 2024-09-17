@@ -7,7 +7,10 @@ import { CSVLink } from "react-csv";
 import { FaDownload } from "react-icons/fa6";
 import { generateCsvData } from "../utils/generateCsvData";
 import Table from "../components/Table.jsx";
-import { calculateAllPercentageChanges } from "../utils/calculatePercentage";
+import {
+  calculatePercentageChanges,
+  calculateAllPercentageChanges,
+} from "../utils/calculatePercentage";
 
 const Data = () => {
   const [deviceData, setDeviceData] = useState([]);
@@ -19,7 +22,7 @@ const Data = () => {
 
   const baseUrl = import.meta.env.VITE_REACT_APP_API_URL;
   const token = import.meta.env.VITE_REACT_APP_API_TOKEN;
-  const device_id = 79;
+  const deviceId = 79;
 
   const fetchAllPages = async (url) => {
     let allData = [];
@@ -28,12 +31,9 @@ const Data = () => {
     while (nextPage) {
       try {
         const response = await axios.get(nextPage, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         });
-        const pageData = response.data.data;
-        allData = [...allData, ...pageData];
+        allData = [...allData, ...response.data.data];
         nextPage = response.data.links.next;
       } catch (err) {
         console.error("Error fetching data:", err);
@@ -45,37 +45,48 @@ const Data = () => {
     return allData;
   };
 
+  const fetchPage = async (url, page = 1) => {
+    const pageUrl = `${url}&page=${page}`;
+
+    try {
+      const response = await axios.get(pageUrl, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return response.data.data;
+    } catch (err) {
+      setError(err.message);
+      return [];
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       setLoadingData(true);
       let url;
+      let allDeviceData = [];
 
       if (interval === "all") {
-        url = `${baseUrl}/api/devices/${device_id}/energies?sort_by=created_at&order_by=desc`;
-      } else {
-        url = `${baseUrl}/api/devices/${device_id}/energies?interval=${interval}&sort_by=created_at&order_by=desc`;
-      }
-
-      try {
-        let allDeviceData;
-        if (interval === "all") {
+        url = `${baseUrl}/api/devices/${deviceId}/energies?sort_by=created_at&order_by=desc`;
+        try {
           allDeviceData = await fetchAllPages(url);
-        } else {
-          const response = await axios.get(url, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          allDeviceData = response.data.data;
+        } catch (err) {
+          setError(err.message);
         }
-
-        setDeviceData(allDeviceData);
-      } catch (err) {
-        console.error("Error fetching data:", err);
-        setError(err.message);
-      } finally {
-        setLoadingData(false);
+      } else {
+        url = `${baseUrl}/api/devices/${deviceId}/energies?interval=${interval}&sort_by=created_at&order_by=desc`;
+        try {
+          const [firstPageData, secondPageData] = await Promise.all([
+            fetchPage(url, 1),
+            fetchPage(url, 2),
+          ]);
+          allDeviceData = [...firstPageData, ...secondPageData];
+        } catch (err) {
+          setError(err.message);
+        }
       }
+
+      setDeviceData(allDeviceData);
+      setLoadingData(false);
     };
 
     fetchData();
@@ -83,7 +94,7 @@ const Data = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      let sortedData =
+      const sortedData =
         interval === "all"
           ? deviceData
           : [...deviceData].sort(
@@ -91,12 +102,11 @@ const Data = () => {
             );
       setFilteredData(sortedData);
     }, 500);
+
     return () => clearTimeout(timer);
   }, [deviceData, interval]);
 
   if (error) return <p>Error: {error}</p>;
-
-  const fields = ["PSLH UGM"];
 
   const buttonClass = (btnInterval) =>
     interval === btnInterval
@@ -125,7 +135,7 @@ const Data = () => {
   };
 
   const title = intervalTitleMap[interval] || "Data";
-  const percentageChanges = calculateAllPercentageChanges(filteredData);
+  const percentageChanges = calculatePercentageChanges(filteredData);
   const csvData = generateCsvData(filteredData, interval, percentageChanges);
 
   return (
@@ -205,7 +215,6 @@ const Data = () => {
               <Table
                 data={filteredData}
                 interval={interval}
-                percentageChanges={percentageChanges}
                 aria-label={`Table showing ${title} data`}
               />
             )}

@@ -3,7 +3,10 @@ import { FaSort, FaSortUp, FaSortDown } from "react-icons/fa";
 import { formatDate } from "../utils/formatDate";
 import { formatTime } from "../utils/formatTime";
 import { formatDuration } from "../utils/formatDuration";
-import { calculateAllPercentageChanges } from "../utils/calculatePercentage";
+import {
+  calculatePercentageChanges,
+  calculateAllPercentageChanges,
+} from "../utils/calculatePercentage";
 
 const Table = ({ data, interval }) => {
   const [sortedData, setSortedData] = useState([]);
@@ -12,9 +15,20 @@ const Table = ({ data, interval }) => {
     direction: "default",
   });
 
-  useEffect(() => {
-    const percentageChanges = calculateAllPercentageChanges(data);
+  const convertTimeToMinutes = (timeString) => {
+    const [hours, minutes] = timeString.split(":").map(Number);
+    return hours * 60 + minutes;
+  };
 
+  useEffect(() => {
+    let percentageChanges;
+
+    // Determine which percentage change calculation function to use
+    if (interval === "all") {
+      percentageChanges = calculateAllPercentageChanges(data);
+    } else {
+      percentageChanges = calculatePercentageChanges(data);
+    }
     const combinedData = data.map((item, index) => ({
       ...item,
       percentageChange: percentageChanges[index] || {
@@ -36,19 +50,61 @@ const Table = ({ data, interval }) => {
         } else if (sortConfig.key === "date") {
           aValue = new Date(a.starts_at).getTime();
           bValue = new Date(b.starts_at).getTime();
+        } else if (sortConfig.key === "time") {
+          aValue = convertTimeToMinutes(formatTime(a.starts_at));
+          bValue = convertTimeToMinutes(formatTime(b.starts_at));
         } else if (sortConfig.key === "percentageChange") {
+          const aSign = a.percentageChange.sign;
+          const bSign = b.percentageChange.sign;
+
+          if (aSign === "" && bSign === "") {
+            aValue = a.percentageChange.change;
+            bValue = b.percentageChange.change;
+            return sortConfig.direction === "descending"
+              ? bValue - aValue
+              : aValue - bValue;
+          }
+
+          if (aSign === "" || bSign === "") {
+            return aSign === ""
+              ? sortConfig.direction === "ascending"
+                ? 1
+                : -1
+              : sortConfig.direction === "ascending"
+              ? -1
+              : 1;
+          }
+
           aValue = a.percentageChange.change;
           bValue = b.percentageChange.change;
+          return sortConfig.direction === "ascending"
+            ? bValue - aValue
+            : aValue - bValue;
+        } else if (sortConfig.key === "cumulative_value") {
+          aValue = a.cumulative_value;
+          bValue = b.cumulative_value;
         } else {
           aValue = a[sortConfig.key];
           bValue = b[sortConfig.key];
         }
 
-        if (aValue < bValue) {
-          return sortConfig.direction === "ascending" ? -1 : 1;
-        }
-        if (aValue > bValue) {
-          return sortConfig.direction === "ascending" ? 1 : -1;
+        if (
+          sortConfig.key === "cumulative_value" ||
+          sortConfig.key === "percentageChange"
+        ) {
+          if (aValue < bValue) {
+            return sortConfig.direction === "ascending" ? 1 : -1;
+          }
+          if (aValue > bValue) {
+            return sortConfig.direction === "ascending" ? -1 : 1;
+          }
+        } else {
+          if (aValue < bValue) {
+            return sortConfig.direction === "ascending" ? -1 : 1;
+          }
+          if (aValue > bValue) {
+            return sortConfig.direction === "ascending" ? 1 : -1;
+          }
         }
         return 0;
       });
@@ -165,9 +221,13 @@ const Table = ({ data, interval }) => {
           </th>
 
           {(interval === "hourly" || interval === "all") && (
-            <th scope="col" className="py-2 text-white w-24">
+            <th
+              scope="col"
+              className="py-2 text-white w-24 cursor-pointer"
+              onClick={() => onSort("time")}
+            >
               <div className="flex items-center justify-center">
-                <span>Time</span>
+                <span>Time</span> {renderSortIcon("time")}
               </div>
             </th>
           )}

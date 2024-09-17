@@ -150,7 +150,7 @@ const MainChart = () => {
     <div className="h-grow">
       <div className="lg:flex md:flex justify-between">
         <h1 className="lg:text-lg text-center text-sm font-bold mt-1 lg:pr-0">
-          TMA Data
+          TMAT Data
         </h1>
         <div className="flex justify-between text-center  items-center">
           {intervals.map(({ interval, label }) => (
