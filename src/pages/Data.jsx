@@ -135,7 +135,15 @@ const Data = () => {
   };
 
   const title = intervalTitleMap[interval] || "Data";
-  const percentageChanges = calculatePercentageChanges(filteredData);
+
+  let percentageChanges;
+
+  if (interval === "all") {
+    percentageChanges = calculateAllPercentageChanges(filteredData);
+  } else {
+    percentageChanges = calculatePercentageChanges(filteredData);
+  }
+
   const csvData = generateCsvData(filteredData, interval, percentageChanges);
 
   return (
