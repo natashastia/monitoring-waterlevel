@@ -6,7 +6,7 @@ const CustomTooltip = ({ payload, label, interval }) => {
     if (interval === "hourly") {
       formattedLabel = dayjs(label).format("HH:mm");
     } else if (interval === "daily") {
-      formattedLabel = dayjs(label).format("DD/MM");
+      formattedLabel = dayjs(label).format("DD");
     } else if (interval === "monthly") {
       formattedLabel = dayjs(label).format("MMMM");
     }

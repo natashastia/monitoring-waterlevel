@@ -187,7 +187,7 @@ const LatestData = () => {
                     </td>
                   )}
                   <td className="text-center border-r border-lightblue">
-                    {parseFloat(item.cumulative_value).toFixed(3)}
+                    -{parseFloat(item.cumulative_value).toFixed(3)}
                   </td>
                   <td className="text-center border-r border-lightblue">
                     {percentageChanges[index]
