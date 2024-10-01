@@ -69,7 +69,7 @@ const LineChartComponent = ({
       } else if (secondHalfAverage < firstHalfAverage) {
         setTrend("The graph shows an UPWARD trend");
       } else {
-        setTrend("The graph shows a DOWNWARD trend");
+        setTrend("Can't be determined");
       }
     }
   }, [data]);
