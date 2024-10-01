@@ -8,9 +8,6 @@ import MainChart from "../components/MainChart";
 import Threshold from "../assets/threshold.png";
 
 const Dashboard = () => {
-  const [selectedOption, setSelectedOption] = useState("PSLH UGM");
-  const options = ["PSLH UGM"];
-
   return (
     <div className="flex flex-col lg:h-screen w-full bg-gray relative">
       <header>

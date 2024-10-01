@@ -1,23 +1,23 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaChevronDown, FaArrowRight } from "react-icons/fa"; // Importing icons from react-icons
+import { FaChevronDown, FaArrowRight } from "react-icons/fa";
 import Nav from "../components/NavbarLanding";
 import Footer from "../components/Footer";
 import Wave from "../assets/Wave.png";
 
 const Landing = () => {
   const navigate = useNavigate();
-  const [organization, setOrganization] = useState(""); // State for selected organization
+  const [organization, setOrganization] = useState("");
 
   const handleSelectChange = (event) => {
-    setOrganization(event.target.value); // Update the selected organization
+    setOrganization(event.target.value);
   };
 
   const handleNavigate = () => {
     if (organization === "Building") {
-      navigate("/dashboard"); // Navigate to the dashboard when "Building" is selected
+      navigate("/dashboard");
     } else {
-      alert("Please select an organization first."); // Alert if no organization is selected
+      alert("Please select an organization first.");
     }
   };
 
@@ -73,7 +73,7 @@ const Landing = () => {
               </div>
 
               <button
-                onClick={handleNavigate} // Trigger navigation on button click
+                onClick={handleNavigate}
                 className="bg-blue text-white pr-1 h-10  rounded-r-full hover:bg-blue-800"
                 aria-label="Go to dashboard"
               >

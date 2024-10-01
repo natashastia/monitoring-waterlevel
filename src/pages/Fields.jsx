@@ -115,9 +115,9 @@ const Fields = () => {
                     icon={
                       new Icon({
                         iconUrl: markerIconPng,
-                        iconSize: [25, 41], // Ukuran ikon
-                        iconAnchor: [12, 41], // Posisi ujung bawah marker
-                        popupAnchor: [0, -41], // Menyesuaikan agar popup berada di atas marker
+                        iconSize: [25, 41],
+                        iconAnchor: [12, 41],
+                        popupAnchor: [0, -41],
                       })
                     }
                   >

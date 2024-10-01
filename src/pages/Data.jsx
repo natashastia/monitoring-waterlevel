@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Nav from "../components/Navbar";
 import Footer from "../components/Footer";
-import DropdownButton from "../components/Dropdown";
 import { CSVLink } from "react-csv";
 import { FaDownload } from "react-icons/fa6";
 import { generateCsvData } from "../utils/generateCsvData";
@@ -18,7 +17,6 @@ const Data = () => {
   const [error, setError] = useState(null);
   const [interval, setInterval] = useState("all");
   const [loadingData, setLoadingData] = useState(false);
-  const [selectedFields, setSelectedFields] = useState("PSLH UGM");
 
   const baseUrl = import.meta.env.VITE_REACT_APP_API_URL;
   const token = import.meta.env.VITE_REACT_APP_API_TOKEN;
